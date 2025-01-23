@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
@@ -49,10 +50,18 @@ class MainActivity : ComponentActivity() {
 
             Column {
                 Spacer(modifier = Modifier.height(4.dp))
-                Text(text = msg.author,
-                    color = MaterialTheme.colorScheme.secondary)
+                Text(
+                    text = msg.author,
+                    color = MaterialTheme.colorScheme.secondary,
+                    style = MaterialTheme.typography.titleSmall)
                 Spacer(modifier = Modifier.height(2.dp))
-                Text(text = msg.body)
+
+                Surface {
+                    Text(
+                        text = msg.body,
+                        modifier = Modifier.padding(all = 4.dp),
+                        style = MaterialTheme.typography.bodyMedium)
+                }
                 Spacer(modifier = Modifier.height(4.dp))
             }
         }
