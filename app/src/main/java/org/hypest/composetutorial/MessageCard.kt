@@ -1,6 +1,7 @@
 package org.hypest.composetutorial
 
 import android.content.res.Configuration
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -45,6 +46,13 @@ fun MessageCard(msg: Message) {
 
         var isExpanded by remember { mutableStateOf(false) }
 
+        val surfaceColor by animateColorAsState(
+            if (isExpanded)
+                MaterialTheme.colorScheme.primary
+            else
+                MaterialTheme.colorScheme.surface
+        )
+
         Column(modifier = Modifier.clickable { isExpanded = !isExpanded }) {
             Spacer(modifier = Modifier.height(4.dp))
             Text(
@@ -54,7 +62,9 @@ fun MessageCard(msg: Message) {
             )
             Spacer(modifier = Modifier.height(2.dp))
 
-            Surface {
+            Surface(
+                color = surfaceColor
+            ) {
                 Text(
                     text = msg.body,
                     modifier = Modifier.padding(all = 4.dp),
